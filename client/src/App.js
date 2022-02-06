@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {useRoutes} from './routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import {useHttp} from './hooks/http.hook';
+import {useState, useEffect} from 'react';
 
 function App() {
+  const{request} = useHttp();
+  const[isValid, setIsValid] = useState(false);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    async function checkIfValidToken(token){
+      const response = await request("/api/auth/checkToken", "GET", null, {token: `Bearer ${token}`});
+      response.token != undefined ? setIsValid(true) : setIsValid(false);
+    } 
+    checkIfValidToken(token)
+  }, [token]);
+  const routes = useRoutes(isValid);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Router>
+          {routes}
+      </Router>
     </div>
   );
 }
