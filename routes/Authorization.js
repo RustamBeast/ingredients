@@ -31,12 +31,12 @@ router.post('/signIn', async(req,res)=>{
     const user = await User.findOne({email})
    const pwMatch = await bcrypt.compare(password, user.password)
     if (!pwMatch){
-        return res.status(203).json({message:"Wrong credentials"})
+        return res.status(403).json({message:"Wrong credentials"})
     }
     const token = jwt.sign({user}, process.env.JWT, {
         expiresIn: "3d",
       });
-    return res.status(403).json({message:"Loged", token})
+    return res.status(203).json({message:"Loged", token})
     
 })
 router.post('/checkToken',verifyTokenAndAuth, async(req, res)=>{
