@@ -1,9 +1,12 @@
 import React from 'react';
 import AuthLayout from '../components/AuthLayout';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import { useHttp } from '../hooks/http.hook';
+import AuthContext from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 function AuthPage() {
+    const auth = useContext(AuthContext);
     const[form, setForm] = useState({email: "", password: ""});
     const changeHandler = (event) => {
         setForm({...form, [event.target.name]: event.target.value});
@@ -12,8 +15,7 @@ function AuthPage() {
     const loginHandler = async (event) => {
         event.preventDefault();
         const data = await request("/api/auth/signIn", "POST", form);
-        console.log(data);
-        localStorage.setItem("token", data.token);    
+        auth.login(data.token, data.userId);  
     };
     return (
         <AuthLayout>
@@ -30,8 +32,9 @@ function AuthPage() {
                         <input name='password' type="password" onChange={(event) => changeHandler(event)} />
                     </div>
 
-                    <div>
+                    <div className='buttonInForm'>
                         <button type="submit">Войти</button>
+                        <span>Нет аккаунта?&nbsp; <Link className='link' to='/signup'>Зарегистрируйтесь</Link></span>
                     </div>
                 </form>
             </div>
