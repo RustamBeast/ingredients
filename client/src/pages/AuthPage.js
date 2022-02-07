@@ -12,7 +12,8 @@ function AuthPage() {
     const loginHandler = async (event) => {
         event.preventDefault();
         const data = await request("/api/auth/signIn", "POST", form);
-        localStorage.setItem("token", data.token);
+        console.log(data);
+        localStorage.setItem("token", data.token);    
     };
     return (
         <AuthLayout>
