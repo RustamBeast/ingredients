@@ -24,8 +24,6 @@ router.post('/signUp', async(req, res)=>{
     
 })
 
-
-
 router.post('/signIn', async(req,res)=>{
     const {email, password} = req.body
     const user = await User.findOne({email})
@@ -39,9 +37,25 @@ router.post('/signIn', async(req,res)=>{
     return res.status(203).json({message:"Loged", token})
     
 })
+
 router.post('/checkToken',verifyTokenAndAuth, async(req, res)=>{
 
     return res.status(200).json({token:true})
 })
+
+/*router.delete('/user/:id', isLoggedIn, function(req,res){
+    User.remove({
+      _id: req.params.id,
+    }, function (err, user) {
+      if (err)
+        return console.error(err);
+
+      console.log('User successfully removed from polls collection!');
+      res.status(200).send();
+
+
+    });
+
+});*/
 
 module.exports = router;

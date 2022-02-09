@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 
 export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
+        console.log(isAuthenticated)
         return (
             <Routes>
                 <Route exact path="/" element={<HomePage/>}/>

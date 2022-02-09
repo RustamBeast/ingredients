@@ -3,6 +3,19 @@ import {useState, useEffect} from 'react';
 import Ingredient from '../components/Ingredient';
 import Layout from '../components/Layout';
 
+function useInputValue(defaultValue='') {
+    const [value, setValue] = useState(defaultValue)
+
+    return {
+        bind: {
+            value,
+            onChange: event => setValue(event.target.value)
+        },
+        value: () => value,
+        clear: () => setValue('')
+    }
+}
+
 function HomePage() {
     const elements = [
         {id: 1, name: 'apple'},
@@ -20,18 +33,18 @@ function HomePage() {
         {id: 13, name: 'banana'}
     ];
     const[filteredElements, setFilteredElements] = useState(elements);
-    const[state, changeState] = useState('');
+    const input = useInputValue('');
     useEffect(() => {
         setFilteredElements(elements.filter(element => { 
-            return element.name.toLowerCase().includes(state.toLowerCase());
+            return element.name.toLowerCase().includes(input.value().trim().toLowerCase());
         }));
-    }, [state]);
+    }, [input.value()]);
     return (
         <Layout>
            <h2>Выберите продукты, которые вы хотите использовать</h2>
            <h3>Поиск ингредиентов</h3>
            <form>
-                <input value={state} onChange={(event) => changeState(event.target.value)} type="text" />
+                <input {...input.bind} type="text" />
             </form>
             <div className='list_of_ingredients'>
                 {filteredElements.length === 0 ? <h4>Ничего нет :(</h4> :
