@@ -20,7 +20,7 @@ router.post('/signUp', async(req, res)=>{
     
    })
    
-   return res.status(403).json({message:"Signed Up"})
+   return res.status(203).json({message:"Signed Up", status: true});
     
 })
 

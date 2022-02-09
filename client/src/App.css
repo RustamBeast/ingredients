@@ -47,12 +47,24 @@ html {
   border: none;
   border-radius: 10px;
 }
+.buttonInForm {
+  flex-direction: row !important;
+}
+.buttonInForm span {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.buttonInForm span .link{
+  color: #638B84;
+}
 .loginForm form div button {
   height: 2rem;
+  width: min-content;
+  padding:0 1rem;
   border: none;
   border-radius: 10px;
   background-color: #C5CAAA;
-  margin-top: 1rem;
 }
 .flexed-header {
   display: flex;
@@ -63,6 +75,18 @@ html {
 .flexed-header li{
   display: flex;
   align-items: center;
+}
+.flexed-header li a{
+  display: flex;
+  align-items: center;
+}
+.flexed-header li button {
+  border: none;
+  border-radius:5px;
+  padding: 0.5rem 1rem;
+  background-color: #2F4858;
+  color: #fafafa;
+  font-weight: 500;
 }
 .logo {
   font-weight: 700;
