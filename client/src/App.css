@@ -66,6 +66,10 @@ html {
   border-radius: 10px;
   background-color: #C5CAAA;
 }
+.loginForm form div button:hover{
+  cursor: pointer;
+  background-color: #878a76;
+}
 .flexed-header {
   display: flex;
   justify-content: flex-start;

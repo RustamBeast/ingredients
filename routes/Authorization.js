@@ -4,6 +4,7 @@ const User = require('../models/Users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { verifyTokenAndAuth } = require("./VerifyToken")
+
 router.post('/signUp', async(req, res)=>{
     
     const {email, password} = req.body
@@ -34,7 +35,7 @@ router.post('/signIn', async(req,res)=>{
     const token = jwt.sign({user}, process.env.JWT, {
         expiresIn: "3d",
       });
-    return res.status(203).json({message:"Loged", token})
+    return res.status(203).json({message:"Loged", token, userId : user._id})
     
 })
 

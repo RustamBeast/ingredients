@@ -14,7 +14,8 @@ function Header() {
                <li><Link className='link' to='/top'>ПОПУЛЯРНЫЕ БЛЮДА</Link></li>
                <li><Link className='link' to='/create'>СОБРАТЬ БЛЮДО</Link></li>
                <li><Link className='link' to='/kcal'>КАЛОРИЙНОСТЬ ПРОДУКТОВ</Link></li>
-               <li className='userIcon'><Link className='link' to='/kcal'><img src={user} alt="" /></Link></li>
+               <li><Link className='link' to='/create/ingredient'>ДОБАВИТЬ ИНГРЕДИЕНТ</Link></li>
+               <li className='userIcon'><Link className='link' to={`/user/${auth.userId}`}><img src={user} alt="" /></Link></li>
                <li><button onClick={auth.logout} className='link'>Выйти</button></li>
            </ul>
        </nav>
