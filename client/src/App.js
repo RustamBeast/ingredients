@@ -8,14 +8,14 @@ import AuthContext from './context/AuthContext';
 import {useAuth} from './hooks/auth.hook';
 
 function App() {
-  const {token, login, logout, userId} = useAuth();
-  const isAuthenticated = localStorage.getItem('userData') ? localStorage.getItem('userData').token : !!token;
+  const {token, login, logout, userId,isValid} = useAuth();
   const auth = useContext(AuthContext);
+  const isAuthenticated = isValid
   const routes = useRoutes(isAuthenticated);
   return (
     <div className="wrapper">
       <AuthContext.Provider value={{
-        token, login, logout, userId, isAuthenticated
+        token, login, logout, userId, isValid
       }}>
         <Router>
             {routes}

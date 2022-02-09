@@ -5,10 +5,12 @@ export const useAuth = () => {
     const[isValid, setIsValid] = useState(false);
     const[token, setToken] = useState(null);
     const[userId, setUserId] = useState(null);
+    
 
     const login = useCallback((jwtToken, id) => {
         setToken(jwtToken);
         setUserId(id);
+        setIsValid(true)
 
         localStorage.setItem("userData", JSON.stringify({userId: id, token: jwtToken}));
     }, []);
@@ -16,7 +18,7 @@ export const useAuth = () => {
     const logout = useCallback(() => {
         setToken(null);
         setUserId(null);
-
+        setIsValid(false)
         localStorage.removeItem("userData");
     }, []);
 
@@ -37,5 +39,5 @@ export const useAuth = () => {
         }
     }, [login]);
 
-    return {login, logout, token, userId};
+    return {login, logout, token, userId,isValid};
 }

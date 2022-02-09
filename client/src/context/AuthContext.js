@@ -7,7 +7,7 @@ const AuthContext = createContext({
     userId: null,
     login: rofl,
     logout: rofl,
-    isAuthenticated: false
+    isValid: false
 });
 
 export default AuthContext;

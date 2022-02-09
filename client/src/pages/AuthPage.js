@@ -16,6 +16,7 @@ function AuthPage() {
         event.preventDefault();
         const data = await request("/api/auth/signIn", "POST", form);
         auth.login(data.token, data.userId);  
+        console.log(auth)
     };
     return (
         <AuthLayout>
