@@ -15,7 +15,7 @@ const verifyToken = (req,res,next)=>{
 const verifyTokenAndAuth = (req,res,next)=>{
     verifyToken(req,res, ()=>{
         console.log(req.user.user._id,req.query.id)
-        if (req.user.user._id !== req.query.id) return res.status(403).json("You have no rights to do that")
+        if (req.user.user._id !== req.headers.id) return res.status(403).json("You have no rights to do that")
         next()
     })
    

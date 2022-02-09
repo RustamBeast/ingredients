@@ -9,7 +9,7 @@ import {useAuth} from './hooks/auth.hook';
 
 function App() {
   const {token, login, logout, userId} = useAuth();
-  const isAuthenticated = !!token;
+  const isAuthenticated = localStorage.getItem('userData') ? localStorage.getItem('userData').token : !!token;
   const auth = useContext(AuthContext);
   const routes = useRoutes(isAuthenticated);
   return (
