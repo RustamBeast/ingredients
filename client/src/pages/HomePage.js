@@ -26,7 +26,7 @@ function HomePage() {
         getIngredientElements();
     }, []);
     async function getIngredientElements() {
-        const data = await request("/api/foodsearch/ingList", "GET", null, {token: `Bearer ${auth.token}`, id: auth.userId});
+        const data = await request("/api/foodsearch/ingList", "GET", null);
         setElements(data);
         setFilteredElements(data);
         console.log(data);
