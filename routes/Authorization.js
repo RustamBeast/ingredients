@@ -46,7 +46,7 @@ router.post('/checkToken',verifyTokenAndAuth, async(req, res)=>{
 
 router.delete('/deleteUser', verifyTokenAndAuth, async (req,res)=>{ 
     await User.remove({
-      _id: req.query.id,
+      _id: req.headers.id,
     })
 
       console.log('User successfully removed from polls collection!');

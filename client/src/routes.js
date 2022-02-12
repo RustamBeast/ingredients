@@ -18,7 +18,7 @@ export const useRoutes = (isAuthenticated) => {
                 <Route exact path="/create" element={<CreateDishPage/>}/>
                 <Route exact path="/kcal" element={<KcalPage/>}/>
                 <Route exact path='/login' element={<Navigate to="/" />}/>
-                <Route exact path='/user/:id' element={<UserPage />}/>
+                <Route exact path='/user/' element={<UserPage />}/>
                 <Route exact path='/create/ingredient' element={<CreateIngredientPage/>}/>
             </Routes>
         )
