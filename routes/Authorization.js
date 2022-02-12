@@ -44,7 +44,7 @@ router.post('/checkToken',verifyTokenAndAuth, async(req, res)=>{
     return res.status(200).json({token:true})
 })
 
-router.delete('/user/:id', verifyTokenAndAuth, async (req,res)=>{ 
+router.delete('/deleteUser', verifyTokenAndAuth, async (req,res)=>{ 
     await User.remove({
       _id: req.query.id,
     })
