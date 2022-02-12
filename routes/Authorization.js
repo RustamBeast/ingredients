@@ -28,6 +28,7 @@ router.post('/signUp', async(req, res)=>{
 router.post('/signIn', async(req,res)=>{
     const {email, password} = req.body
     const user = await User.findOne({email})
+    if (!user) return  res.status(402).json({message:"Wrong credentials"}) 
    const pwMatch = await bcrypt.compare(password, user.password)
     if (!pwMatch){
         return res.status(403).json({message:"Wrong credentials"})
@@ -45,8 +46,10 @@ router.post('/checkToken',verifyTokenAndAuth, async(req, res)=>{
 })
 
 router.delete('/deleteUser', verifyTokenAndAuth, async (req,res)=>{ 
+    
+
     await User.remove({
-      _id: req.query.id,
+      _id: req.headers.id,
     })
 
       console.log('User successfully removed from polls collection!');
