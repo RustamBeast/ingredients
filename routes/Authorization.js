@@ -44,19 +44,17 @@ router.post('/checkToken',verifyTokenAndAuth, async(req, res)=>{
     return res.status(200).json({token:true})
 })
 
-/*router.delete('/user/:id', isLoggedIn, function(req,res){
-    User.remove({
-      _id: req.params.id,
-    }, function (err, user) {
-      if (err)
-        return console.error(err);
+router.delete('/deleteUser', verifyTokenAndAuth, async (req,res)=>{ 
+    await User.remove({
+      _id: req.query.id,
+    })
 
       console.log('User successfully removed from polls collection!');
-      res.status(200).send();
+      res.status(200).json({message: 'User successfully removed from polls collection!'});
 
 
     });
 
-});*/
+
 
 module.exports = router;
