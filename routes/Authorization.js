@@ -36,7 +36,7 @@ router.post('/signIn', async(req,res)=>{
     const token = jwt.sign({user}, process.env.JWT, {
         expiresIn: "3d",
       });
-    return res.status(203).json({message:"Loged", token, userId : user._id, isAdmin})
+    return res.status(203).json({message:"Loged", token, userId : user._id, isAdmin: user.isAdmin})
     
 })
 

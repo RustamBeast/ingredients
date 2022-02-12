@@ -15,8 +15,7 @@ function AuthPage() {
     const loginHandler = async (event) => {
         event.preventDefault();
         const data = await request("/api/auth/signIn", "POST", form);
-        auth.login(data.token, data.userId);  
-        console.log(auth)
+        auth.login(data.token, data.userId, data.isAdmin);  
     };
     return (
         <AuthLayout>

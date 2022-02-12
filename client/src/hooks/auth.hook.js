@@ -5,20 +5,23 @@ export const useAuth = () => {
     const[isValid, setIsValid] = useState(false);
     const[token, setToken] = useState(null);
     const[userId, setUserId] = useState(null);
+    const[isAdmin, setIsAdmin] = useState(false);
     
 
-    const login = useCallback((jwtToken, id) => {
+    const login = useCallback((jwtToken, id, isAdmin) => {
         setToken(jwtToken);
         setUserId(id);
         setIsValid(true)
+        setIsAdmin(isAdmin);
 
-        localStorage.setItem("userData", JSON.stringify({userId: id, token: jwtToken}));
+        localStorage.setItem("userData", JSON.stringify({userId: id, token: jwtToken, isAdmin: isAdmin}));
     }, []);
 
     const logout = useCallback(() => {
-        setToken(null);
-        setUserId(null);
+        setToken(null)
+        setUserId(null)
         setIsValid(false)
+        setIsAdmin(false)
         localStorage.removeItem("userData");
     }, []);
 
@@ -35,9 +38,9 @@ export const useAuth = () => {
         const data = JSON.parse(localStorage.getItem('userData'));
 
         if (data && data.token) {
-            login(data.token, data.userId);
+            login(data.token, data.userId, data.isAdmin);
         }
     }, [login]);
 
-    return {login, logout, token, userId,isValid};
+    return {login, logout, token, userId, isValid, isAdmin};
 }

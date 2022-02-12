@@ -48,7 +48,7 @@ function HomePage() {
             <div className='list_of_ingredients'>
                 {filteredElements.length === 0 ? <h4>Ничего нет :(</h4> :
                     filteredElements.map((element) => {
-                        return <Ingredient key={element._id} name={element.name_ru}></Ingredient>;
+                        return <Ingredient key={element._id} name={element.name_ru} kcal={element.kcal}></Ingredient>;
                     })
                 }
             </div>

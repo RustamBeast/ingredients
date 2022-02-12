@@ -21,7 +21,7 @@ function RegisterPage () {
     return (
         <Layout>
             <div className='createIngredientForm'>
-                <h1>Регистрация</h1>
+                <h1>Добавить ингредиент</h1>
                 <form onSubmit={(event) => createHandler(event)}>
                     <div>
                         <label>Название на английском</label>

@@ -15,8 +15,7 @@ function UserPage() {
 
     return (
         <Layout>
-            <div>Email</div>
-            <button onClick={deleteUser}>Удалить аккаунт</button>
+            <button className='delete-acc'onClick={deleteUser}>Удалить аккаунт</button>
         </Layout>
     );
 }
