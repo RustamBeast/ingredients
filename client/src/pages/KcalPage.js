@@ -9,12 +9,14 @@ function KcalPage() {
   }, [count]);
 
   return (
-    <div>
-      <p>Вы нажали {count} раз</p>
-      <button onClick={() => setCount(count + 1)}>
-        Нажми на меня
-      </button>
-    </div>
+        <Layout>
+            <div>
+            <p>Вы нажали {count} раз</p>
+            <button onClick={() => setCount(count + 1)}>
+                Нажми на меня
+            </button>
+            </div>
+        </Layout>
   );
 }
 

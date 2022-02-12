@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthLayout from '../components/AuthLayout';
+import Layout from '../components/Layout';
 import AuthContext from '../context/AuthContext';
 import {useHttp} from '../hooks/http.hook';
 import {useAuth} from '../hooks/auth.hook';
@@ -19,7 +19,7 @@ function RegisterPage () {
         const data = await request("/api/admin/addIngredient", "POST", form, {token: `Bearer ${auth.token}`, id: auth.userId});
     };
     return (
-        <AuthLayout>
+        <Layout>
             <div className='createIngredientForm'>
                 <h1>Регистрация</h1>
                 <form onSubmit={(event) => createHandler(event)}>
@@ -49,7 +49,7 @@ function RegisterPage () {
 
                 </form>
             </div>
-        </AuthLayout>
+        </Layout>
     );
 }
 
